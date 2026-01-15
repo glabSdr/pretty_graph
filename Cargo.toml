@@ -2,5 +2,13 @@
 name = "pretty_graph"
 version = "0.1.0"
 edition = "2024"
-
-[dependencies]
+license = "MIT"  
+license-file = "LICENSE"
+authors = ["Glab Strizhkov glabstrizhkov@gmail.com"]
+documentation = "https://docs.rs/pretty_graph"
+readme = "README.md"
+homepage = "https://github.com/glabSdr/pretty_graph"
+repository = "https://github.com/glabSdr/pretty_graph"
+description = "pretty_graph provides simple toolbox to build and working with graphs"
+keywords = ["graph"]
+categories = ["data-structures"]
