@@ -3,7 +3,6 @@ name = "pretty_graph"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"  
-license-file = "LICENSE"
 authors = ["Glab Strizhkov glabstrizhkov@gmail.com"]
 documentation = "https://docs.rs/pretty_graph"
 readme = "README.md"
