@@ -36,24 +36,6 @@ impl Node {
     pub fn values(&self) -> Vec<&str> {
         self.body.read().unwrap().payload.values().copied().collect()
     }
-
-    /// Get linked node keys
-    ///
-    /// # Example
-    /// ```rust
-    ///let node_3 = Node::new();
-    ///let node_2 = linked_nodes();
-    ///node_2.link("node_3", node_3);
-    ///
-    ///let link_names = vec!["node_1", "node_3"];
-    ///
-    ///for k in node_2.link_keys() {
-    ///    assert!(link_names.contains(&k));
-    ///}
-    /// ```
-    pub fn link_keys(&self) -> Vec<&str> {
-        self.body.read().unwrap().node_links.keys().copied().collect()
-    }
 }
 
 
@@ -85,19 +67,6 @@ mod tests {
 
         for v in node.values() {
             assert!(values.contains(&v));
-        }
-    }
-
-    #[test]
-    fn test_link_keys() {
-        let node_3 = Node::new();
-        let node_2 = linked_nodes();
-        node_2.link("node_3", node_3);
-
-        let link_names = vec!["node_1", "node_3"];
-
-        for k in node_2.link_keys() {
-            assert!(link_names.contains(&k));
         }
     }
 }
