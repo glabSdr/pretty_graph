@@ -11,7 +11,7 @@ impl Node {
     /// node.set("key", "value");
     /// ```
     pub fn set(&self, k: &'static str, v: &'static str) {
-        self.body.borrow_mut().payload.insert(k, v);
+        self.body.write().unwrap().payload.insert(k, v);
     }
 
     /// Get node value
@@ -24,7 +24,7 @@ impl Node {
     /// let v = node.get("key");
     /// ```
     pub fn get(&self, k: &str) -> Option<&str> {
-        self.body.borrow().payload.get(k).cloned()
+        self.body.read().unwrap().payload.get(k).cloned()
     }
 
     /// Remove node value
@@ -37,7 +37,7 @@ impl Node {
     /// let v = node.remove("key");
     /// ```
     pub fn remove(&self, k: &str) -> Option<&str> {
-        self.body.borrow_mut().payload.remove(k)
+        self.body.write().unwrap().payload.remove(k)
     }
 }
 

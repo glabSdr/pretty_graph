@@ -6,10 +6,11 @@ mod payload_access;
 
 use std::cell::RefCell;
 use std::rc::Rc;
+use std::sync::{Arc, RwLock};
 use crate::node_body::StrNodeBody;
 
 #[derive(Debug, Clone)]
 pub struct Node {
-    body: Rc<RefCell<StrNodeBody>>
+    body: Arc<RwLock<StrNodeBody>>
 }
 

@@ -34,3 +34,18 @@ StrNodeBody can contains key -> Node fields.
         }
     }
 ```
+
+
+## Multithread Case
+```rust
+fn main() {
+    let node = Node::new();
+    node.set("key", "value");
+
+    std::thread::spawn(move || {
+        println!("{:?}", node.get("key"))
+    });
+
+    sleep(Duration::from_millis(100));
+}
+```

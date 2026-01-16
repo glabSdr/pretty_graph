@@ -19,7 +19,7 @@ impl Node {
     /// let node_1: Option<Node> = node_2.node_by_key("node_1");
     /// ```
     pub fn node_by_key(&self, k: &str) -> Option<Node> {
-        self.body.borrow().node_links.get(k).cloned()
+        self.body.read().unwrap().node_links.get(k).cloned()
     }
 
     /// Get to node by link chane
@@ -47,7 +47,7 @@ impl Node {
     /// ```
     pub fn node_by_chain(&self, mut route: Vec<&str>) -> Option<Node> {
         let k = route.remove(0);
-        let binding = self.body.borrow();
+        let binding = self.body.read().unwrap();
         let next = match binding.node_links.get(k) {
             Some(node) => node,
             None => return None

@@ -1,6 +1,5 @@
-use std::cell::RefCell;
 use std::collections::HashMap;
-use std::rc::Rc;
+use std::sync::{Arc, RwLock};
 use crate::Node;
 use crate::node_body::StrNodeBody;
 
@@ -14,7 +13,8 @@ impl Node {
     /// let node = Node::new();
     /// ```
     pub fn new() -> Self {
-        Self { body: Rc::new(RefCell::new(StrNodeBody { payload: HashMap::new(), node_links: HashMap::new() })) }
+        Self { body: Arc::new(RwLock::new(StrNodeBody { payload: HashMap::new(), node_links: HashMap::new() })) }
+        // Self { body: Rc::new(RefCell::new(StrNodeBody { payload: HashMap::new(), node_links: HashMap::new() })) }
     }
 }
 
@@ -63,7 +63,7 @@ impl Node {
         };
 
 
-        Self { body: Rc::new(RefCell::new(StrNodeBody { payload, node_links })) }
+        Self { body: Arc::new(RwLock::new(StrNodeBody { payload, node_links })) }
     }
 }
 

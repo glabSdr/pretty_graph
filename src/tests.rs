@@ -41,4 +41,16 @@ pub mod tests {
             None => println!("No node found by path: [\"node_2\", \"node_1\"]")
         }
     }
+
+    #[test]
+    fn test_multithread_case() {
+        let node = Node::new();
+        node.set("key", "value");
+
+        std::thread::spawn(move || {
+            assert_eq!(Some("value"), node.get("key"))
+        });
+
+        std::thread::sleep(std::time::Duration::from_millis(100));
+    }
 }

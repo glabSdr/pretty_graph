@@ -16,7 +16,7 @@ impl Node {
     ///}
     /// ```
     pub fn keys(&self) -> Vec<&str> {
-        self.body.borrow().payload.keys().copied().collect()
+        self.body.read().unwrap().payload.keys().copied().collect()
     }
 
     /// Get payload values
@@ -34,7 +34,7 @@ impl Node {
     ///}
     /// ```
     pub fn values(&self) -> Vec<&str> {
-        self.body.borrow().payload.values().copied().collect()
+        self.body.read().unwrap().payload.values().copied().collect()
     }
 
     /// Get linked node keys
@@ -52,7 +52,7 @@ impl Node {
     ///}
     /// ```
     pub fn link_keys(&self) -> Vec<&str> {
-        self.body.borrow().node_links.keys().copied().collect()
+        self.body.read().unwrap().node_links.keys().copied().collect()
     }
 }
 

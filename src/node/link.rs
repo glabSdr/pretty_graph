@@ -12,7 +12,7 @@ impl Node {
     /// node_2.link("node_1", node_1);
     /// ```
     pub fn link(&self, link_as: &'static str, node: Node) {
-        self.body.borrow_mut().node_links.insert(link_as, node);
+        self.body.write().unwrap().node_links.insert(link_as, node);
     }
 
 
@@ -27,7 +27,7 @@ impl Node {
     /// node_2.unlink("node_1");
     /// ```
     pub fn unlink(&self, k: &'static str) {
-        self.body.borrow_mut().node_links.remove(k);
+        self.body.write().unwrap().node_links.remove(k);
     }
 }
 
