@@ -17,8 +17,8 @@ impl Node {
     ///    // ...
     ///}
     /// ```
-    pub fn link_keys(&self) -> Vec<&str> {
-        self.body.read().unwrap().node_links.keys().copied().collect()
+    pub fn link_keys(&self) -> Vec<String> {
+        self.body.read().unwrap().node_links.keys().cloned().collect()
     }
 
     /// Get linked nodes
@@ -56,7 +56,7 @@ mod tests {
         let link_names = vec!["node_1", "node_3"];
 
         for k in node_2.link_keys() {
-            assert!(link_names.contains(&k));
+            assert!(link_names.contains(&k.as_str()));
         }
     }
 
@@ -76,7 +76,7 @@ mod tests {
         
         for node in node_1.linked_nodes() {
             let v = node.get("key");
-            assert_eq!(Some("value"), v);
+            assert_eq!(Some("value".to_string()), v);
         }
     }
 }

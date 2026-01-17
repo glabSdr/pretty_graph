@@ -11,8 +11,8 @@ impl Node {
     /// let node_2 = Node::new();
     /// node_2.link("node_1", node_1);
     /// ```
-    pub fn link(&self, link_as: &'static str, node: Node) {
-        self.body.write().unwrap().node_links.insert(link_as, node);
+    pub fn link(&self, link_as: &str, node: Node) {
+        self.body.write().unwrap().node_links.insert(link_as.to_string(), node);
     }
 
 
@@ -26,7 +26,7 @@ impl Node {
     /// let node_2 = Node::new();
     /// node_2.unlink("node_1");
     /// ```
-    pub fn unlink(&self, k: &'static str) {
+    pub fn unlink(&self, k: &str) {
         self.body.write().unwrap().node_links.remove(k);
     }
 }

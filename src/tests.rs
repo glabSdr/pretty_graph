@@ -48,7 +48,7 @@ pub mod tests {
         node.set("key", "value");
 
         std::thread::spawn(move || {
-            assert_eq!(Some("value"), node.get("key"))
+            assert_eq!(Some("value".to_string()), node.get("key"))
         });
 
         std::thread::sleep(std::time::Duration::from_millis(100));

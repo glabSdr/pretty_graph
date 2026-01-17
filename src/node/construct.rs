@@ -40,9 +40,9 @@ impl Node {
     pub fn from(payload: Option<Vec<(&'static str, &'static str)>>, node_links: Option<Vec<(&'static str, Node)>>) -> Self {
         let payload = match payload {
             Some(v) => {
-                let mut hmap: HashMap<&str, &str> = HashMap::with_capacity(v.len());
+                let mut hmap = HashMap::with_capacity(v.len());
                 for (k, v) in v.iter() {
-                    hmap.insert(*k, *v);
+                    hmap.insert(k.to_string(), v.to_string());
                 }
 
                 hmap
@@ -52,9 +52,9 @@ impl Node {
 
         let node_links = match node_links {
             Some(v) => {
-                let mut hmap: HashMap<&str, Node> = HashMap::with_capacity(v.len());
+                let mut hmap = HashMap::with_capacity(v.len());
                 for (k, v) in v.iter() {
-                    hmap.insert(*k, v.clone());
+                    hmap.insert(k.to_string(), v.clone());
                 }
 
                 hmap
@@ -89,7 +89,7 @@ mod tests {
         );
 
         let v1 = node_2.get("key1");
-        assert_eq!(v1, Some("value1"));
+        assert_eq!(v1, Some("value1".to_string()));
 
         let n_1 = node_2.node_by_key("node_1");
         assert!(n_1.is_some());

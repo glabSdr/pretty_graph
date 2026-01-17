@@ -15,8 +15,8 @@ impl Node {
     ///    assert!(keys.contains(&k));
     ///}
     /// ```
-    pub fn keys(&self) -> Vec<&str> {
-        self.body.read().unwrap().payload.keys().copied().collect()
+    pub fn keys(&self) -> Vec<String> {
+        self.body.read().unwrap().payload.keys().cloned().collect()
     }
 
     /// Get payload values
@@ -33,8 +33,8 @@ impl Node {
     ///    assert!(values.contains(&v));
     ///}
     /// ```
-    pub fn values(&self) -> Vec<&str> {
-        self.body.read().unwrap().payload.values().copied().collect()
+    pub fn values(&self) -> Vec<String> {
+        self.body.read().unwrap().payload.values().cloned().collect()
     }
 }
 
@@ -53,7 +53,7 @@ mod tests {
         let keys = vec!["key1", "key2"];
 
         for k in node.keys() {
-            assert!(keys.contains(&k));
+            assert!(keys.contains(&k.as_str()));
         }
     }
 
@@ -66,7 +66,7 @@ mod tests {
         let values = vec!["value1", "value2"];
 
         for v in node.values() {
-            assert!(values.contains(&v));
+            assert!(values.contains(&v.as_str()));
         }
     }
 }

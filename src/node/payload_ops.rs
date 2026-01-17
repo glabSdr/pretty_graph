@@ -10,8 +10,8 @@ impl Node {
     /// let node = Node::new();
     /// node.set("key", "value");
     /// ```
-    pub fn set(&self, k: &'static str, v: &'static str) {
-        self.body.write().unwrap().payload.insert(k, v);
+    pub fn set(&self, k: &str, v: &str) {
+        self.body.write().unwrap().payload.insert(k.to_string(), v.to_string());
     }
 
     /// Get node value
@@ -23,7 +23,7 @@ impl Node {
     /// node.set("key", "value");
     /// let v = node.get("key");
     /// ```
-    pub fn get(&self, k: &str) -> Option<&str> {
+    pub fn get(&self, k: &str) -> Option<String> {
         self.body.read().unwrap().payload.get(k).cloned()
     }
 
@@ -36,7 +36,7 @@ impl Node {
     /// node.set("key", "value");
     /// let v = node.remove("key");
     /// ```
-    pub fn remove(&self, k: &str) -> Option<&str> {
+    pub fn remove(&self, k: &str) -> Option<String> {
         self.body.write().unwrap().payload.remove(k)
     }
 }
