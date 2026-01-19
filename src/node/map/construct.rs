@@ -1,22 +1,23 @@
 use std::collections::HashMap;
 use std::sync::{Arc, RwLock};
 use crate::Node;
-use crate::node_body::StrNodeBody;
+use crate::node_body::{MapStrNodeBody, StrNodeBody};
 
 impl Node {
     /// Construct Node
     ///
     /// # Example
     /// ```rust
-    /// use heap_node::Node;
+    /// use pretty_graph::Node;
     ///
     /// let node = Node::new();
     /// ```
     pub fn new() -> Self {
-        Self { body: Arc::new(RwLock::new(StrNodeBody { payload: HashMap::new(), node_links: HashMap::new() })) }
-        // Self { body: Rc::new(RefCell::new(StrNodeBody { payload: HashMap::new(), node_links: HashMap::new() })) }
+        Self { body: Arc::new(RwLock::new(StrNodeBody::MapStrNodeBody(MapStrNodeBody { payload: HashMap::new(), node_links: HashMap::new() }))) }
     }
 }
+
+
 
 
 impl Node {
@@ -24,7 +25,7 @@ impl Node {
     ///
     /// # Example
     /// ```rust
-    /// use heap_node::Node;
+    /// use pretty_graph::Node;
     ///
     /// let node_1 = Node::from(None, None); // Params are optional
     /// let node_2 = Node::from(
@@ -63,7 +64,7 @@ impl Node {
         };
 
 
-        Self { body: Arc::new(RwLock::new(StrNodeBody { payload, node_links })) }
+        Self { body: Arc::new(RwLock::new(StrNodeBody::MapStrNodeBody(MapStrNodeBody { payload, node_links }))) }
     }
 }
 

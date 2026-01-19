@@ -11,7 +11,7 @@ StrNodeBody can contains key -> Node fields.
 
 ## Simple example to start
 ```rust
-    use heap_node::Node;
+    use pretty_graph::Node;
 
     fn main() {
         let node_1 = Node::from(None, None);
