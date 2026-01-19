@@ -36,13 +36,4 @@ impl StrNodeBody {
             _ => panic!("keys allowed for map nodes only")
         }
     }
-
-    pub fn values(&self) -> Vec<String> {
-        match self {
-            Self::MapStrNodeBody(body) => {
-                body.payload.values().cloned().collect()
-            },
-            _ => panic!("values allowed for map nodes only")
-        }
-    }
 }

@@ -58,24 +58,6 @@ impl Node {
         self.body.read().unwrap().keys()
     }
 
-    /// Get payload values
-    ///
-    /// # Example
-    /// ```rust
-    ///let node = Node::new();
-    ///node.set("key1", "value1");
-    ///node.set("key2", "value2");
-    ///
-    ///let values = vec!["value1", "value2"];
-    ///
-    ///for v in node.values() {
-    ///    assert!(values.contains(&v));
-    ///}
-    /// ```
-    pub fn values(&self) -> Vec<String> {
-        self.body.read().unwrap().values()
-    }
-
 
 }
 
@@ -144,11 +126,5 @@ mod tests {
     #[should_panic]
     fn test_keys_panic() {
         Node::new_vec().keys();;
-    }
-
-    #[test]
-    #[should_panic]
-    fn test_values_panic() {
-        Node::new_vec().values();;
     }
 }
