@@ -13,7 +13,23 @@ impl Node {
         self.body.write().unwrap().push_str(v);
     }
 
-    /// Get node value
+
+
+    /// Pop string from vector node
+    /// # Example
+    /// ```rust
+    /// use pretty_graph::Node;
+    ///
+    /// let node = Node::new();
+    /// node.push_str("value");
+    /// let s = node.pop_string();
+    /// ```
+    pub fn pop_string(&self) -> Option<String> {
+        self.body.write().unwrap().pop_string()
+    }
+
+
+        /// Get node value
     /// # Example
     /// ```rust
     /// use pretty_graph::Node;
@@ -69,6 +85,14 @@ mod tests {
     }
 
     #[test]
+    fn test_pop_string() {
+        let node = Node::new_vec();
+        node.push_str("value");
+
+        let v = node.pop_string().unwrap();
+        assert_eq!(v, "value");
+    }
+    #[test]
     fn test_remove_string_by_index() {
         let node = Node::new_vec();
         node.push_str("value");
@@ -89,6 +113,12 @@ mod tests {
     #[should_panic]
     fn test_push_str_panic() {
         Node::new().push_str("value");
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_pop_string_panic() {
+        Node::new().pop_string();
     }
 
     #[test]

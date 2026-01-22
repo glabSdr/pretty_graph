@@ -1,6 +1,15 @@
 use crate::node_body::StrNodeBody;
 
 impl StrNodeBody {
+    pub fn get_string_by_index(&self, i: usize) -> Option<String> {
+        match self {
+            Self::VecStrNodeBody(body) => {
+                body.payload.get(i).cloned()
+            },
+            _ => panic!("get_string allowed for vector nodes only")
+        }
+    }
+
     pub fn push_str(&mut self, v: &str) {
         match self {
             Self::VecStrNodeBody(body) => {
@@ -10,12 +19,12 @@ impl StrNodeBody {
         }
     }
 
-    pub fn get_string_by_index(&self, i: usize) -> Option<String> {
+    pub fn pop_string(&mut self) -> Option<String> {
         match self {
             Self::VecStrNodeBody(body) => {
-                body.payload.get(i).cloned()
+                body.payload.pop()
             },
-            _ => panic!("get_string allowed for vector nodes only")
+            _ => panic!("push_str allowed for vector nodes only")
         }
     }
 
