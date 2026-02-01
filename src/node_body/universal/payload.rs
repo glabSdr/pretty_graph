@@ -7,4 +7,11 @@ impl StrNodeBody {
             Self::VecStrNodeBody(body) => body.payload.clone()
         }
     }
+
+    pub fn clear(&mut self) {
+        match self {
+            Self::MapStrNodeBody(body) => body.payload.clear(),
+            Self::VecStrNodeBody(body) => body.payload.clear()
+        }
+    }
 }

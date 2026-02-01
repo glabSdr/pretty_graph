@@ -9,4 +9,3 @@ use crate::node_body::StrNodeBody;
 pub struct Node {
     body: Arc<RwLock<StrNodeBody>>
 }
-

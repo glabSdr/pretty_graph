@@ -125,6 +125,6 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_keys_panic() {
-        Node::new_vec().keys();;
+        Node::new_vec().keys();
     }
 }
