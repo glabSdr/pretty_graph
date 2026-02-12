@@ -4,3 +4,6 @@ mod node_body;
 
 pub use node::Node;
 mod tests;
+mod sugar;
+
+pub use sugar::*;

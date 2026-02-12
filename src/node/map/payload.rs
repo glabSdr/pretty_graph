@@ -77,6 +77,7 @@ mod tests {
         node.remove("key");
         assert!(node.get("key").is_none());
     }
+    
 
     #[test]
     fn test_keys() {

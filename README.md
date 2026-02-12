@@ -49,3 +49,6 @@ fn main() {
     sleep(Duration::from_millis(100));
 }
 ```
+
+## Sugar
+Sugar wrappers on top of Node to make life easier. Take a look at the traits.
