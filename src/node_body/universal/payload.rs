@@ -14,4 +14,11 @@ impl StrNodeBody {
             Self::VecStrNodeBody(body) => body.payload.clear()
         }
     }
+
+    pub fn len(&self) -> usize {
+        match self {
+            Self::MapStrNodeBody(body) => body.payload.len(),
+            Self::VecStrNodeBody(body) => body.payload.len()
+        }
+    }
 }

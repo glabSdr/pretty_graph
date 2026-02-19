@@ -32,7 +32,29 @@ impl Node {
     pub fn clear(&self) {
         self.body.write().unwrap().clear();
     }
+
+
+    /// Get payload len
+    /// # Example
+    /// ```rust
+    ///use pretty_graph::Node;
+    ///let node = Node::new_vec();
+    ///node.push_str("Hi!");
+    ///
+    ///println!("len: {}", node.len());
+    ///
+    ///use pretty_graph::Node;
+    ///let node = Node::new();
+    ///node.set("msg", "Hi!");
+    ///
+    ///println!("len: {}", node.len());
+    ///
+    /// ```
+    pub fn len(&self) -> usize {
+        self.body.read().unwrap().len()
+    }
 }
+
 
 #[cfg(test)]
 mod tests {
@@ -64,5 +86,18 @@ mod tests {
 
         let values = node.values();
         assert_eq!(values.len(), 0);
+    }
+
+    #[test]
+    pub fn test_len() {
+        let node = Node::new_vec();
+        node.push_str("Hi!");
+
+        assert_eq!(node.len(), 1);
+
+        let node = Node::new();
+        node.set("msg", "Hi!");
+
+        assert_eq!(node.len(), 1);
     }
 }
