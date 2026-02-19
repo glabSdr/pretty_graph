@@ -6,9 +6,10 @@ impl Node {
     /// ```rust
     /// use pretty_graph::Node;
     ///
-    /// let node = Node::new();
-    /// node.push_str("value");
-    /// let node = node.node_by_index(0);
+    /// let node_1 = Node::new_vec();
+    /// let node_2 = Node::new();
+    /// node_1.push_node(node_2);
+    /// let node_2 = node_1.node_by_index(0);
     /// ```
     pub fn node_by_index(&self, i: usize) -> Option<Node> {
         self.body.read().unwrap().node_by_index(i)
@@ -36,7 +37,7 @@ impl Node {
     /// let node_1 = Node::new_vec();
     /// let node_2 = Node::new();
     /// node_1.push_node(node_2);
-    /// let node_2 = node.pop_node();
+    /// let node_2 = node_1.pop_node();
     /// ```
     pub fn pop_node(&self) -> Option<Node> {
         self.body.write().unwrap().pop_node()
@@ -50,7 +51,7 @@ impl Node {
     /// let node_1 = Node::new_vec();
     /// let node_2 = Node::new();
     /// node_1.push_node(node_2);
-    /// let node_2 = node.remove_by_node_by_index(0);
+    /// let node_2 = node_1.remove_by_node_by_index(0);
     /// ```
     pub fn remove_by_node_by_index(&self, i: usize) -> Node {
         self.body.write().unwrap().remove_by_node_by_index(i)

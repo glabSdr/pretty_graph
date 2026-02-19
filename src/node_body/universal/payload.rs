@@ -21,4 +21,21 @@ impl StrNodeBody {
             Self::VecStrNodeBody(body) => body.payload.len()
         }
     }
+
+    pub fn contains_string(&self, v: &String) -> bool {
+        match self {
+            Self::MapStrNodeBody(body) => {
+                for exist_str in body.payload.values() {
+                    if exist_str == v {
+                        return true;
+                    }
+                }
+
+                false
+            },
+            Self::VecStrNodeBody(body) => {
+                body.payload.contains(v)
+            }
+        }
+    }
 }

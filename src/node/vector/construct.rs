@@ -24,14 +24,14 @@ impl Node {
     /// use pretty_graph::Node;
     ///
     /// let node_1 = Node::new();
-    /// let node_2 = Node::from(
+    /// let node_2 = Node::vec_from(
     ///     Some(vec![
     ///         "value1",
     ///         "value2"
     ///     ]),
     ///     Some(vec![
     ///         node_1
-    ///     ]);
+    ///     ])
     /// );
     /// ```
     pub fn vec_from(payload: Option<Vec<&str>>, node_links: Option<Vec<Node>>) -> Self {

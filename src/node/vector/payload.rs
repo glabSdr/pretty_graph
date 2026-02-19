@@ -6,7 +6,7 @@ impl Node {
     /// ```rust
     /// use pretty_graph::Node;
     ///
-    /// let node = Node::new();
+    /// let node = Node::new_vec();
     /// node.push_str("value");
     /// ```
     pub fn push_str(&self, v: &str) {
@@ -20,7 +20,7 @@ impl Node {
     /// ```rust
     /// use pretty_graph::Node;
     ///
-    /// let node = Node::new();
+    /// let node = Node::new_vec();
     /// node.push_str("value");
     /// let s = node.pop_string();
     /// ```
@@ -34,7 +34,7 @@ impl Node {
     /// ```rust
     /// use pretty_graph::Node;
     ///
-    /// let node = Node::new();
+    /// let node = Node::new_vec();
     /// node.push_str("value");
     /// let v = node.get_string_by_index(0);
     /// ```
@@ -47,26 +47,12 @@ impl Node {
     /// ```rust
     /// use pretty_graph::Node;
     ///
-    /// let node = Node::new();
+    /// let node = Node::new_vec();
     /// node.push_str("value");
     /// let v = node.remove_string_by_index(0);
     /// ```
     pub fn remove_string_by_index(&self, i: usize) -> String {
         self.body.write().unwrap().remove_string_by_index(i)
-    }
-
-
-    /// Check if vector node contains string
-    /// # Example
-    /// ```rust
-    /// use pretty_graph::Node;
-    ///
-    /// let node = Node::new();
-    /// node.push_str("value");
-    /// let v = node.contains_string(&"value".to_string());
-    /// ```
-    pub fn contains_string(&self, v: &String) -> bool {
-        self.body.read().unwrap().contains_string(v)
     }
 }
 
@@ -101,13 +87,6 @@ mod tests {
         assert_eq!(v, "value");
     }
 
-    #[test]
-    fn test_contains_string() {
-        let node = Node::new_vec();
-        node.push_str("value");
-        let v = node.contains_string(&"value".to_string());
-        assert!(v);
-    }
 
     #[test]
     #[should_panic]
@@ -139,11 +118,5 @@ mod tests {
         let node = Node::new_vec();
 
         let _ = node.remove_string_by_index(0);
-    }
-
-    #[test]
-    #[should_panic]
-    fn test_contains_string_panic() {
-        Node::new().contains_string(&"value".to_string());
     }
 }

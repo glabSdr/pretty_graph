@@ -34,6 +34,8 @@ impl Node {
     ///
     /// # Example
     /// ```rust
+    /// use pretty_graph::Node;
+    /// 
     ///let node_3 = Node::new();
     ///let node_2 = Node::new();
     ///let node_1 = Node::new();

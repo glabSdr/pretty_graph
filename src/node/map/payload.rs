@@ -44,14 +44,16 @@ impl Node {
     ///
     /// # Example
     /// ```rust
+    /// use pretty_graph::Node;
+    ///
     ///let node = Node::new();
     ///node.set("key1", "value1");
     ///node.set("key2", "value2");
     ///
     ///let keys = vec!["key1", "key2"];
     ///
-    ///for k in node.keys() {
-    ///    assert!(keys.contains(&k));
+    ///for k in node.keys().iter() {
+    ///    assert!(keys.contains(&k.as_str()));
     ///}
     /// ```
     pub fn keys(&self) -> Vec<String> {

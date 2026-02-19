@@ -5,14 +5,16 @@ impl Node {
     ///
     /// # Example
     /// ```rust
+    /// use pretty_graph::Node;
+    ///
     ///let node = Node::new();
     ///node.set("key1", "value1");
     ///node.set("key2", "value2");
     ///
     ///let values = vec!["value1", "value2"];
     ///
-    ///for v in node.values() {
-    ///    assert!(values.contains(&v));
+    ///for v in node.values().iter() {
+    ///    assert!(values.contains(&v.as_str()));
     ///}
     /// ```
     pub fn values(&self) -> Vec<String> {
@@ -25,6 +27,8 @@ impl Node {
     ///
     /// # Example
     /// ```rust
+    /// use pretty_graph::Node;
+    ///
     ///let node = Node::new();
     ///
     ///node.clear();
@@ -38,12 +42,12 @@ impl Node {
     /// # Example
     /// ```rust
     ///use pretty_graph::Node;
+    ///
     ///let node = Node::new_vec();
     ///node.push_str("Hi!");
     ///
     ///println!("len: {}", node.len());
     ///
-    ///use pretty_graph::Node;
     ///let node = Node::new();
     ///node.set("msg", "Hi!");
     ///
@@ -52,6 +56,23 @@ impl Node {
     /// ```
     pub fn len(&self) -> usize {
         self.body.read().unwrap().len()
+    }
+
+    /// Check if vector node contains string
+    /// # Example
+    /// ```rust
+    /// use pretty_graph::Node;
+    ///
+    /// let node = Node::new();
+    /// node.set("key", "value");
+    /// let v = node.contains_string(&"value".to_string());
+    ///
+    /// let node = Node::new_vec();
+    /// node.push_str("value");
+    /// let v = node.contains_string(&"value".to_string());
+    /// ```
+    pub fn contains_string(&self, v: &String) -> bool {
+        self.body.read().unwrap().contains_string(v)
     }
 }
 
@@ -99,5 +120,23 @@ mod tests {
         node.set("msg", "Hi!");
 
         assert_eq!(node.len(), 1);
+    }
+
+    #[test]
+    fn test_contains_string() {
+        let node = Node::new_vec();
+        node.push_str("value");
+        let v = node.contains_string(&"value".to_string());
+        assert!(v);
+
+        let node = Node::new();
+        node.set("key1", "value1");
+        node.set("key2", "value2");
+        let v = node.contains_string(&"value2".to_string());
+        assert!(v);
+
+        let node = Node::new();
+        let v = node.contains_string(&"value".to_string());
+        assert!(!v);
     }
 }

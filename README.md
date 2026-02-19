@@ -38,6 +38,10 @@ StrNodeBody can contains key -> Node fields.
 
 ## Multithread Case
 ```rust
+use pretty_graph::Node;
+use std::thread::sleep;
+use std::time::Duration;
+
 fn main() {
     let node = Node::new();
     node.set("key", "value");

@@ -36,13 +36,4 @@ impl StrNodeBody {
             _ => panic!("remove_string allowed for vector nodes only")
         }
     }
-
-    pub fn contains_string(&self, v: &String) -> bool {
-        match self {
-            Self::VecStrNodeBody(body) => {
-                body.payload.contains(v)
-            },
-            _ => panic!("get_string allowed for vector nodes only")
-        }
-    }
 }
